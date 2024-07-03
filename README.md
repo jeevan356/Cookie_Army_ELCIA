@@ -8,3 +8,7 @@
 ![P3](https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/46d4abba-2360-432e-a32e-7d1b07fc4439)
 ![P4](https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/d02434c5-8cb4-49c2-8bfb-aa66b38d5be9)
 ![P5](https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/8faaba71-c322-48ff-98b4-32e3e6701f51)
+
+The Demo video of The First Part of the Prototype stage
+https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/c4181283-e21a-4574-89d0-80748104fe1e
+
