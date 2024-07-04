@@ -5,8 +5,7 @@
 Intelligent robotic system that can autonomously perform agricultural tasks. This system aims to support farmers by increasing productivity, reducing manual labor, and ensuring precise resource management. The system should enhance efficiency and optimize resource usage, while being adaptable to various types of crops and farming environments.
  
 ![P1](https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/20a5bc5f-ca17-499f-b5e4-49381b08fe72.type)
-<img src="https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/20a5bc5f-ca17-499f-b5e4-49381b08fe72.type" width="50" height="50"> 
-<img src="https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/20a5bc5f-ca17-499f-b5e4-49381b08fe72.type" width="50" height="50">
+
 "The development phase has already begun. According to our previous plan, we have successfully completed the rover section, and the 3D printing of the arms is also finished. Now, the next step is to add the best features to the arm that is Semi Autonomous Planting,Automated Watering,Semi Autonomous Harvesting,Environmental Monitoring."
 
 ![P2](https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/af1ad1b8-1a36-43e9-a105-cd0360629ae9) 
