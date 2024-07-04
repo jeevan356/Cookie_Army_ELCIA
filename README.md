@@ -17,7 +17,7 @@ The Demo video of The First Part of the Prototype stage
 https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/c4181283-e21a-4574-89d0-80748104fe1e
 
 
-
+<p align="justify">
 #our code for the rover
 // Motor driver pins
 #define IN1 2
