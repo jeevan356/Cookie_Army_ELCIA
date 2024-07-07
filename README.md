@@ -17,4 +17,8 @@ The Demo video of The First Part of the Prototype stage
 https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/c4181283-e21a-4574-89d0-80748104fe1e
 
 
+work in progress 
+
+https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/174d2c61-57ec-493b-aaa1-3128c15bf483
+
 
