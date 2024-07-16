@@ -1,0 +1,142 @@
+#include <Wire.h>
+#include <Adafruit_PWMServoDriver.h>
+#include <Servo.h>
+
+// Motor Driver Pins
+//Wire.h: Library for I2C communication.
+//dafruit_PWMServoDriver.h: Library for controlling the PCA9685 PWM driver.
+//Servo.h: Library for controlling standard servo motors.
+
+//Motor Driver Pins: Defines the pins connected to the L298N motor driver to control the rover's motors.
+const int ENA = 6;
+const int IN1 = 2;
+const int IN2 = 3;
+const int ENB = 7;
+const int IN3 = 4;
+const int IN4 = 5;
+
+// Ultrasonic Sensor Pins
+const int trigPin = 8;
+const int echoPin = 9;
+//Ultrasonic Sensor Pins: Defines the pins connected to the HC-SR04 ultrasonic sensor for distance measurement.
+
+// PCA9685 Servo Driver
+Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+
+//Servo channels on PCA9685: Defines the channels on the PCA9685 for different servo motors.
+// Servo channels on PCA9685
+const int baseServo = 0;
+const int jointServo1 = 1;
+const int clawServo = 2;
+const int jointServo2 = 3;
+const int moistureServo = 4;
+const int waterPumpServo = 5;
+const int dicerHolderServo = 6;
+
+// DC Motor Pin
+const int dicerMotorPin = 12;
+//DC Motor Pin: Defines the pin connected to the transistor base controlling the DC motor.
+
+// Function to convert degrees to pulse length
+uint16_t degreesToPulse(int angle) {
+  return map(angle, 0, 180, 150, 600);
+}
+
+void setup() {
+  // Initialize motor driver pins
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  
+  // Initialize ultrasonic sensor pins
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  
+  // Initialize DC motor pin
+  pinMode(dicerMotorPin, OUTPUT);
+  
+  // Initialize I2C communication for PCA9685
+  Wire.begin();
+  pwm.begin();
+  pwm.setPWMFreq(60);  // Analog servos run at ~60 Hz
+//I2C and PCA9685 Initialization: Initializes I2C communication and sets up the PCA9685 servo driver with a frequency of 60 Hz.
+
+//Initial Servo Positions: Sets the initial positions for all the servos.
+  // Initial position for servos
+  pwm.setPWM(baseServo, 0, degreesToPulse(60));
+  pwm.setPWM(jointServo1, 0, degreesToPulse(90));
+  pwm.setPWM(clawServo, 0, degreesToPulse(90));
+  pwm.setPWM(jointServo2, 0, degreesToPulse(90));
+  pwm.setPWM(moistureServo, 0, degreesToPulse(90));
+  pwm.setPWM(waterPumpServo, 0, degreesToPulse(60));
+  pwm.setPWM(dicerHolderServo, 0, degreesToPulse(90));
+}
+
+void loop() {
+  long duration, distance;
+  
+  // Measure distance
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  duration = pulseIn(echoPin, HIGH);
+  distance = (duration / 2) / 29.1;
+  
+  // Check if an object is detected within 20 cm
+  if (distance < 20) {
+    // Stop rover motors
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
+    digitalWrite(IN3, LOW);
+    digitalWrite(IN4, LOW);
+
+    // Wait for 8 seconds before starting the autonomous actions
+    delay(2000);
+
+    // Arm performs autonomous actions
+    pwm.setPWM(baseServo, 0, degreesToPulse(90));  // Move base servo
+    delay(1000);
+    pwm.setPWM(jointServo1, 0, degreesToPulse(360));  // Move joint servo 1
+    delay(1000);
+    pwm.setPWM(clawServo, 0, degreesToPulse(360));  // Close claw
+    delay(1000);
+    pwm.setPWM(jointServo2, 0, degreesToPulse(360));  // Move joint servo 2
+    delay(1000);
+    pwm.setPWM(clawServo, 0, degreesToPulse(360));  // Open claw
+    delay(1000);
+
+    // Activate additional motors
+    pwm.setPWM(moistureServo, 0, degreesToPulse(60));  // Bend moisture sensor
+    delay(1000);
+    pwm.setPWM(moistureServo, 0, degreesToPulse(90));  // Return moisture sensor to initial position
+    delay(1000);
+
+    pwm.setPWM(waterPumpServo, 0, degreesToPulse(360));  // Activate water pump
+    delay(1000);
+    pwm.setPWM(waterPumpServo, 0, degreesToPulse(360));  // Deactivate water pump
+    delay(1000);
+
+    digitalWrite(dicerMotorPin, HIGH);  // Turn on dicer motor
+    pwm.setPWM(dicerHolderServo, 0, degreesToPulse(60));  // Hold part of dicer
+    delay(2000);
+    digitalWrite(dicerMotorPin, LOW);  // Turn off dicer motor
+    pwm.setPWM(dicerHolderServo, 0, degreesToPulse(90));  // Release part of dicer
+    delay(1000);
+  } else {
+    // Move rover motors forward
+    analogWrite(ENA, 200);  // Set speed for motor A
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
+    analogWrite(ENB, 200);  // Set speed for motor B
+    digitalWrite(IN3, HIGH);
+    digitalWrite(IN4, LOW);
+  }
+  
+  delay(100);
+}
