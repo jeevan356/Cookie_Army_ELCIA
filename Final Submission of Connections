@@ -1,0 +1,49 @@
+L298N to Arduino:
+
+IN1 -> Arduino D2
+IN2 -> Arduino D3
+IN3 -> Arduino D4
+IN4 -> Arduino D5
+ENA -> Arduino D6 (PWM)
+ENB -> Arduino D7 (PWM)
+GND -> Arduino GND
+VCC -> 12V Power Supply
+Gear Motors to L298N:
+
+Motor 1 -> OUT1 and OUT2
+Motor 2 -> OUT3 and OUT4
+Ultrasonic Sensor (HC-SR04):
+
+Ultrasonic Sensor to Arduino:
+VCC -> Arduino 5V
+GND -> Arduino GND
+Trig -> Arduino D8
+Echo -> Arduino D9
+Arm Part
+PCA9685 Servo Driver:
+
+PCA9685 to Arduino:
+VCC -> Arduino 5V
+GND -> Arduino GND
+SDA -> Arduino A4
+SCL -> Arduino A5
+Servo Motors:
+
+MG996R Servo (Base):
+Connect to Channel 0 on PCA9685
+MG995 Servo 1 (Intermediate Joint):
+Connect to Channel 1 on PCA9685
+MG995 Servo 2 (Claw):
+Connect to Channel 2 on PCA9685
+MG995 Servo 3 (Other Joint):
+Connect to Channel 3 on PCA9685
+Additional Motors:
+
+MG90 Servo (Moisture Sensor Bender):
+Connect to Channel 4 on PCA9685
+MG90 Servo (Water Pump):
+Connect to Channel 5 on PCA9685
+9V DC Motor (Dicer):
+Connect to a transistor setup controlled by Arduino D12
+MG90 Servo (Dicer Holder):
+Connect to Channel 6 on PCA9685
