@@ -21,7 +21,7 @@ work in progress
 
 https://github.com/jeevan356/Cookie_Army_ELCIA/assets/112291164/174d2c61-57ec-493b-aaa1-3128c15bf483
 
-Finally done with the Aggi bot Project 
+Finally done with the Autonomous Aggi bot Robot Project 
 here are the few explanation code of the project
 In the file the final submission file the video of the completion of the project is uploaded
 
